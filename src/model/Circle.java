@@ -2,14 +2,16 @@ package model;
 
 public class Circle {
 
-    private final double PI = 3.14;
     private double radius;
 
-//  Constructor
-    public Circle() {    
+    public void setRadius(double radius) {
+        if (radius > 0) {
+            this.radius = radius;
+        } else {
+            System.out.println("value has to be greater than 0");
+        }
     }
-    
-//  Constructor that takes the radius argument  
+
     public Circle(double radius) {
         this.radius = radius;
     }
@@ -18,11 +20,11 @@ public class Circle {
         return radius;
     }
 
-    public double area() {
-        return radius * radius * PI;
+    public double getArea() {
+        return radius * radius * Math.PI;
     }
 
-    public double circumference() {
-        return PI * 2 * radius;
+    public double getCircumference() {
+        return Math.PI * 2 * radius;
     }
 }

@@ -9,22 +9,24 @@ class MainClass {
 
     static Scanner sc = new Scanner(System.in);
 
-    static boolean goAgain;
+    static boolean loop;
     static int calcChoice;
     static double base;
     static double height;
+    static int menuChoice;
+    static int again;
 
     public static void main(String[] args) {
 
         do {
-            System.out.println("\nChoose a geometrical shape to calculate:\n1. Circle\n2. Rectangle\n3. Triangle\n4. Exit");
-            System.out.print("\nChoice: ");
-            int geometricalChoice = sc.nextInt();
-            if (geometricalChoice == 4) {
+
+            calcMenu();
+
+            if (menuChoice == 4) {
                 break;
             }
 
-            switch (geometricalChoice) {
+            switch (menuChoice) {
                 case 1:
                     handleCircle();
                     break;
@@ -36,24 +38,17 @@ class MainClass {
                     break;
                 default:
                     System.out.println("\nAnswer 1-4");
-                    goAgain = true;
+                    loop = true;
             }
 
-            System.out.println("\nDo you want to calculate another object?\n1. Yes\n2. No");
-            System.out.print("\nChoice: ");
-            int again = sc.nextInt();
-            if (again == 1) {
-                goAgain = true;
-            } else {
-                goAgain = false;
-            }
+            calcAgain();
 
-        } while (goAgain);
+        } while (loop);
 
     }
 
     public static void handleCircle() {
-        System.out.println("\nCircle choosen.");
+        System.out.println("\nCircle chosen.");
         System.out.print("\nInput a radius: ");
         double radius = sc.nextDouble();
 
@@ -67,12 +62,12 @@ class MainClass {
         } else if (calcChoice == 2) {
             System.out.println("\nThe circumference is: " + circle.getCircumference());
         } else {
-            goAgain = true;
+            loop = true;
         }
     }
 
     public static void handleRectangle() {
-        System.out.println("\nRectangle choosen.");
+        System.out.println("\nRectangle chosen.");
         System.out.print("\nInput a base: ");
         base = sc.nextDouble();
         System.out.print("\nInput a heigth: ");
@@ -88,12 +83,12 @@ class MainClass {
         } else if (calcChoice == 2) {
             System.out.println("\nThe circumference is: " + rectangle.getCircumference());
         } else {
-            goAgain = true;
+            loop = true;
         }
     }
 
     public static void handleTriangle() {
-        System.out.println("\nTriangle choosen.");
+        System.out.println("\nTriangle chosen.");
         System.out.print("\nInput a base: ");
         base = sc.nextDouble();
         System.out.print("\nInput a heigth: ");
@@ -113,7 +108,24 @@ class MainClass {
         } else if (calcChoice == 2) {
             System.out.println("\nThe circumference is: " + triangle.getCircumference());
         } else {
-            goAgain = true;
+            loop = true;
+        }
+    }
+
+    public static void calcMenu() {
+        System.out.println("\nChoose a geometrical shape to calculate:\n1. Circle\n2. Rectangle\n3. Triangle\n4. Exit");
+        System.out.print("\nChoice: ");
+        menuChoice = sc.nextInt();
+    }
+
+    public static void calcAgain() {
+        System.out.println("\nDo you want to calculate another object?\n1. Yes\n2. No");
+        System.out.print("\nChoice: ");
+        again = sc.nextInt();
+        if (again == 1) {
+            loop = true;
+        } else {
+            loop = false;
         }
     }
 }
